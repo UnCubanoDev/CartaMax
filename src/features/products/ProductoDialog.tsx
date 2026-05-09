@@ -103,7 +103,7 @@ export function ProductoDialog({ open, onOpenChange, producto, categorias }: any
         imagen_url = await uploadImage(file)
       }
       
-      const payload = { ...data, imagen_url, negocio_id: negocio!.id }
+      const payload = { ...data, categoria_id: data.categoria_id || null, imagen_url, negocio_id: negocio!.id }
       if (isEditing) {
         return productosService.update(producto.id, payload)
       }
