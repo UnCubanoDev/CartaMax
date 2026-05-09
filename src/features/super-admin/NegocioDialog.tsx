@@ -71,6 +71,14 @@ export function NegocioDialog({ open, onOpenChange, negocio, planes }: {
         await negociosService.createUser(data.owner_email, data.password)
       }
       const { password, ...negocioData } = data
+      if (negocioData.estado === 'activo') {
+        const shouldSetDate = !isEditing || (isEditing && negocio?.estado !== 'activo')
+        if (shouldSetDate) {
+          const fecha = new Date()
+          fecha.setDate(fecha.getDate() + 30)
+          negocioData.fecha_vencimiento = fecha.toISOString().split('T')[0]
+        }
+      }
       if (isEditing) return negociosService.update(negocio.id, negocioData)
       return negociosService.create(negocioData)
     },
