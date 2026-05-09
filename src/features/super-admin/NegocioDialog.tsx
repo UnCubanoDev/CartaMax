@@ -71,6 +71,9 @@ export function NegocioDialog({ open, onOpenChange, negocio, planes }: {
         await negociosService.createUser(data.owner_email, data.password)
       }
       const { password, ...negocioData } = data
+      if (!negocioData.plan_id) negocioData.plan_id = null
+      if (!negocioData.telefono) negocioData.telefono = null
+      if (!negocioData.direccion) negocioData.direccion = null
       if (negocioData.estado === 'activo') {
         const shouldSetDate = !isEditing || (isEditing && negocio?.estado !== 'activo')
         if (shouldSetDate) {
