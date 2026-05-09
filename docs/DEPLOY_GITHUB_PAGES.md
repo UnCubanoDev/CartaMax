@@ -85,18 +85,7 @@ git remote add origin https://github.com/tu-usuario/CartaMax.git
 git push -u origin main
 ```
 
-## Paso 5: Configurar GitHub Pages
-
-1. Ve a tu repositorio en GitHub
-2. Haz clic en **Settings**
-3. En el menú lateral, ve a **Pages**
-4. En "Build and deployment":
-   - **Source**: Deploy from a branch
-   - **Branch**: `gh-pages` (se creará automáticamente)
-   - **Folder**: `/ (root)`
-5. Haz clic en "Save"
-
-## Paso 6: Desplegar
+## Paso 5: Desplegar
 
 Ejecuta el comando de despliegue:
 
@@ -106,7 +95,18 @@ npm run deploy
 
 Esto:
 1. Construye el proyecto (`npm run build`)
-2. Sube la carpeta `dist` a la rama `gh-pages`
+2. Crea la rama `gh-pages` y sube la carpeta `dist` a ella
+
+## Paso 6: Configurar GitHub Pages
+
+1. Ve a tu repositorio en GitHub
+2. Haz clic en **Settings**
+3. En el menú lateral, ve a **Pages**
+4. En "Build and deployment":
+   - **Source**: Deploy from a branch
+   - **Branch**: `gh-pages` (ya debe aparecer después del deploy)
+   - **Folder**: `/ (root)`
+5. Haz clic en "Save"
 
 ## Paso 7: Verificar el Despliegue
 
