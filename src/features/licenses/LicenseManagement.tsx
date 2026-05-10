@@ -54,8 +54,7 @@ export function LicenseManagement() {
           .from('comprobantes')
           .upload(fileName, file, { upsert: true })
         if (error) throw error
-        const { data } = supabase.storage.from('comprobantes').getPublicUrl(fileName)
-        comprobante_url = data.publicUrl
+        comprobante_url = fileName
       }
 
       return pagosService.create({

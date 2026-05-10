@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
+import { StorageImage } from '@/components/shared/StorageImage'
 import type { Database } from '@/types/database'
 
 type Pago = Database['public']['Tables']['pagos']['Row'] & {
@@ -81,7 +82,7 @@ export function PaymentHistory() {
             <DialogTitle>Comprobante de Pago</DialogTitle>
           </DialogHeader>
           {selectedPago?.comprobante_url && (
-            <img src={selectedPago.comprobante_url} alt="Comprobante" className="w-full rounded" />
+            <StorageImage bucket="comprobantes" path={selectedPago.comprobante_url} className="w-full rounded" />
           )}
         </DialogContent>
       </Dialog>
