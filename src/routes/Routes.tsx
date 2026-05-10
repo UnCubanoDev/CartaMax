@@ -10,6 +10,7 @@ import { PublicMenu } from '@/features/public-menu/PublicMenu'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { RegisterBusiness } from '@/features/auth/RegisterBusiness'
 import { BusinessManagement } from '@/features/super-admin/BusinessManagement'
+import { UserManagement } from '@/features/super-admin/UserManagement'
 import { PlansManagement } from '@/features/super-admin/PlansManagement'
 import { PaymentsManagement } from '@/features/super-admin/PaymentsManagement'
 import { CategoryManagement } from '@/features/categories/CategoryManagement'
@@ -47,6 +48,7 @@ export function AppRoutes() {
         <Route element={<SuperAdminLayout />}>
           <Route path="/admin" element={<SuperAdminDashboard />} />
           <Route path="/admin/businesses" element={<BusinessManagement />} />
+          <Route path="/admin/users" element={<UserManagement />} />
           <Route path="/admin/plans" element={<PlansManagement />} />
           <Route path="/admin/payments" element={<PaymentsManagement />} />
         </Route>

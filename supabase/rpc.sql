@@ -192,3 +192,17 @@ begin
   return json_build_object('id', v_user_id::text, 'email', p_email);
 end;
 $$;
+
+-- 9. Delete auth user (for super admin)
+create or replace function public.admin_delete_user(p_user_id uuid)
+returns void
+language plpgsql security definer
+as $$
+begin
+  delete from auth.identities where user_id = p_user_id;
+  delete from auth.users where id = p_user_id;
+  if not found then
+    raise exception 'Usuario no encontrado';
+  end if;
+end;
+$$;
