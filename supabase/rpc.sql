@@ -173,7 +173,7 @@ begin
     v_user_id, '00000000-0000-0000-0000-000000000000',
     p_email, crypt(p_password, gen_salt('bf')),
     now(), now(),
-    '{}'::jsonb,
+    '{"role": "super_admin"}'::jsonb,
     '{"provider":"email","providers":["email"]}',
     now(), now(),
     'authenticated', 'authenticated'

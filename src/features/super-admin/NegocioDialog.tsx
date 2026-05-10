@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { supabase } from '@/lib/supabase'
 import { negociosService } from '@/services/negociosService'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
@@ -70,17 +71,18 @@ export function NegocioDialog({ open, onOpenChange, negocio, planes }: {
       if (!isEditing && data.password) {
         await negociosService.createUser(data.owner_email, data.password)
       }
-      const { password, ...negocioData } = data
+      let { password, ...negocioData } = data
       if (!negocioData.plan_id) negocioData.plan_id = null
       if (!negocioData.telefono) negocioData.telefono = null
       if (!negocioData.direccion) negocioData.direccion = null
-      if (negocioData.estado === 'activo') {
-        const shouldSetDate = !isEditing || (isEditing && negocio?.estado !== 'activo')
-        if (shouldSetDate) {
-          const fecha = new Date()
-          fecha.setDate(fecha.getDate() + 30)
-          negocioData.fecha_vencimiento = fecha.toISOString().split('T')[0]
-        }
+      if (isEditing && negocioData.estado === 'activo' && negocio?.estado !== 'activo') {
+        const { error: rpcError } = await supabase.rpc('activar_licencia', {
+          negocio_id: negocio.id,
+          meses: 1,
+        })
+        if (rpcError) throw rpcError
+        const { estado, fecha_vencimiento, ...rest } = negocioData
+        negocioData = rest
       }
       if (isEditing) return negociosService.update(negocio.id, negocioData)
       return negociosService.create(negocioData)
@@ -90,7 +92,10 @@ export function NegocioDialog({ open, onOpenChange, negocio, planes }: {
       toast.success(isEditing ? 'Negocio actualizado' : 'Negocio creado')
       onOpenChange(false)
     },
-    onError: (error: any) => toast.error('Error', { description: error.message }),
+    onError: (error: any) => {
+      console.error('NegocioDialog error:', error)
+      toast.error('Error', { description: JSON.stringify(error.message || error) })
+    },
   })
 
   return (
