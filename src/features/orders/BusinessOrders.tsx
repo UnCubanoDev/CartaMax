@@ -46,10 +46,10 @@ export function BusinessOrders() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Pedidos</h1>
+      <div className="flex-col sm:flex-row flex items-start sm:items-center gap-2 justify-between">
+        <h1 className="text-2xl md:text-3xl font-bold">Pedidos</h1>
         <Select value={filter} onValueChange={setFilter}>
-          <SelectTrigger className="w-40">
+          <SelectTrigger className="w-full sm:w-40">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -68,7 +68,7 @@ export function BusinessOrders() {
           {filtered?.map(orden => (
             <Card key={orden.id}>
               <CardContent className="pt-6">
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-3">
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="text-xl font-bold">
@@ -82,13 +82,13 @@ export function BusinessOrders() {
                       {format(new Date(orden.created_at), "dd MMM yyyy 'a las' HH:mm", { locale: es })}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-start sm:items-center flex-col sm:flex-row gap-2">
                     <span className="text-xl font-bold">${orden.total.toFixed(2)}</span>
                     <Select
                       value={orden.estado}
                       onValueChange={(val) => updateMutation.mutate({ id: orden.id, estado: val })}
                     >
-                      <SelectTrigger className="w-36">
+                      <SelectTrigger className="w-full sm:w-36">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>

@@ -32,8 +32,8 @@ export function PlansManagement() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Gestión de Planes</h1>
+      <div className="flex-col sm:flex-row flex items-start sm:items-center gap-2 justify-between">
+        <h1 className="text-2xl md:text-3xl font-bold">Gestión de Planes</h1>
         <Button onClick={() => { setEditingPlan(null); setDialogOpen(true) }}>
           <Plus className="mr-2 h-4 w-4" />
           Nuevo Plan
@@ -46,6 +46,7 @@ export function PlansManagement() {
           {isLoading ? (
             <div className="space-y-2">{[1,2,3].map(i => <Skeleton key={i} className="h-12 w-full" />)}</div>
           ) : (
+            <div className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -84,7 +85,8 @@ export function PlansManagement() {
                   </TableRow>
                 ))}
               </TableBody>
-            </Table>
+              </Table>
+            </div>
           )}
         </CardContent>
       </Card>

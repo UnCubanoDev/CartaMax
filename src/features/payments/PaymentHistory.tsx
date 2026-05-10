@@ -29,7 +29,7 @@ export function PaymentHistory() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Historial de Pagos</h1>
+      <h1 className="text-2xl md:text-3xl font-bold">Historial de Pagos</h1>
 
       <Card>
         <CardHeader>
@@ -43,7 +43,7 @@ export function PaymentHistory() {
           ) : (
             <div className="space-y-4">
               {pagos?.map((pago) => (
-                <div key={pago.id} className="flex items-center justify-between border-b pb-4">
+                <div key={pago.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-4">
                   <div>
                     <p className="font-medium">${pago.monto.toFixed(2)}</p>
                     <p className="text-sm text-muted-foreground">

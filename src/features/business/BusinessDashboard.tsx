@@ -45,26 +45,26 @@ export function BusinessDashboard() {
   })
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <Badge variant={negocio?.estado === 'activo' ? 'default' : 'destructive'}>
+    <div className="space-y-4 md:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <h1 className="text-2xl md:text-3xl font-bold">Dashboard</h1>
+        <Badge variant={negocio?.estado === 'activo' ? 'default' : 'destructive'} className="w-fit">
           {negocio?.estado === 'activo' ? 'Licencia Activa' : 'Licencia Inactiva'}
         </Badge>
       </div>
 
       {negocio?.estado !== 'activo' && (
         <Card className="border-destructive">
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-4">
-              <AlertTriangle className="h-8 w-8 text-destructive" />
-              <div className="flex-1">
-                <h3 className="font-semibold">Licencia no activa</h3>
-                <p className="text-sm text-muted-foreground">
+          <CardContent className="pt-4 md:pt-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+              <AlertTriangle className="h-6 w-6 md:h-8 md:w-8 text-destructive flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <h3 className="font-semibold text-sm md:text-base">Licencia no activa</h3>
+                <p className="text-xs md:text-sm text-muted-foreground">
                   Tu menú no está visible públicamente. Realiza un pago para activar tu licencia.
                 </p>
               </div>
-              <Button asChild>
+              <Button asChild size="sm" className="w-full sm:w-auto">
                 <Link to="/business/license">Gestionar Licencia</Link>
               </Button>
             </div>
@@ -72,55 +72,55 @@ export function BusinessDashboard() {
         </Card>
       )}
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Mesas</CardTitle>
-            <Table2 className="h-4 w-4 text-muted-foreground" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 px-3 md:px-6 pt-3 md:pt-6">
+            <CardTitle className="text-xs md:text-sm font-medium">Mesas</CardTitle>
+            <Table2 className="h-3.5 w-3.5 md:h-4 md:w-4 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats?.totalMesas || 0}</div>
+          <CardContent className="px-3 md:px-6 pb-3 md:pb-6">
+            <div className="text-xl md:text-2xl font-bold">{stats?.totalMesas || 0}</div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Productos</CardTitle>
-            <Package className="h-4 w-4 text-muted-foreground" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 px-3 md:px-6 pt-3 md:pt-6">
+            <CardTitle className="text-xs md:text-sm font-medium">Productos</CardTitle>
+            <Package className="h-3.5 w-3.5 md:h-4 md:w-4 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats?.totalProductos || 0}</div>
+          <CardContent className="px-3 md:px-6 pb-3 md:pb-6">
+            <div className="text-xl md:text-2xl font-bold">{stats?.totalProductos || 0}</div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Categorías</CardTitle>
-            <Tags className="h-4 w-4 text-muted-foreground" />
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 px-3 md:px-6 pt-3 md:pt-6">
+            <CardTitle className="text-xs md:text-sm font-medium">Categorías</CardTitle>
+            <Tags className="h-3.5 w-3.5 md:h-4 md:w-4 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats?.totalCategorias || 0}</div>
+          <CardContent className="px-3 md:px-6 pb-3 md:pb-6">
+            <div className="text-xl md:text-2xl font-bold">{stats?.totalCategorias || 0}</div>
           </CardContent>
         </Card>
       </div>
 
       <Card>
-        <CardHeader>
-          <CardTitle>Menú Digital</CardTitle>
+        <CardHeader className="px-3 md:px-6 pt-3 md:pt-6">
+          <CardTitle className="text-sm md:text-base">Menú Digital</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col items-center gap-4">
-          <p className="text-sm text-muted-foreground text-center">
+        <CardContent className="flex flex-col items-center gap-3 md:gap-4 px-3 md:px-6 pb-3 md:pb-6">
+          <p className="text-xs md:text-sm text-muted-foreground text-center">
             Escanea este código QR para ver el menú de {negocio?.nombre}
           </p>
           <div
-            className="bg-white p-3 rounded-lg cursor-pointer hover:ring-2 hover:ring-primary transition-all"
+            className="bg-white p-2 md:p-3 rounded-lg cursor-pointer hover:ring-2 hover:ring-primary transition-all"
             onClick={downloadQR}
             title="Descargar QR"
           >
             <QRCodeCanvas
               id="qr-negocio"
               value={`${window.location.origin}${import.meta.env.BASE_URL}#/menu/${negocio?.slug}`}
-              size={160}
+              size={120}
             />
           </div>
         </CardContent>

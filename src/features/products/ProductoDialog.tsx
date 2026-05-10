@@ -124,7 +124,7 @@ export function ProductoDialog({ open, onOpenChange, producto, categorias }: any
           <DialogTitle>{isEditing ? 'Editar' : 'Nuevo'} Producto</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit((data) => mutation.mutate(data))} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="nombre">Nombre</Label>
               <Input id="nombre" {...register('nombre')} />

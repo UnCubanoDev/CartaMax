@@ -91,13 +91,13 @@ export function KitchenView() {
   const listos = ordenes?.filter(o => o.estado === 'listo') || []
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold">{negocio.nombre} - Cocina</h1>
+    <div className="min-h-screen bg-gray-900 text-white p-4 md:p-6">
+      <header className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold">{negocio.nombre} - Cocina</h1>
         <p className="text-gray-400">{new Date().toLocaleTimeString()}</p>
       </header>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         <section>
           <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
             <span className="w-3 h-3 rounded-full bg-yellow-500" />

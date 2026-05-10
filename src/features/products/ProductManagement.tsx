@@ -50,8 +50,8 @@ export function ProductManagement() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Productos</h1>
+      <div className="flex-col sm:flex-row flex items-start sm:items-center gap-2 justify-between">
+        <h1 className="text-2xl md:text-3xl font-bold">Productos</h1>
         <Button onClick={() => { setEditingProducto(null); setDialogOpen(true) }}>
           <Plus className="mr-2 h-4 w-4" />
           Nuevo Producto
@@ -68,6 +68,7 @@ export function ProductManagement() {
               {[1,2,3].map(i => <Skeleton key={i} className="h-12 w-full" />)}
             </div>
           ) : (
+            <div className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -111,6 +112,7 @@ export function ProductManagement() {
                 ))}
               </TableBody>
             </Table>
+            </div>
           )}
         </CardContent>
       </Card>

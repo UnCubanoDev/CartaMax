@@ -102,7 +102,7 @@ export function LicenseManagement() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Gestión de Licencia</h1>
+      <h1 className="text-2xl md:text-3xl font-bold">Gestión de Licencia</h1>
 
       <Card>
         <CardHeader>
@@ -116,24 +116,24 @@ export function LicenseManagement() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2">
             <span>Estado actual:</span>
             <Badge variant={negocio?.estado === 'activo' ? 'default' : 'destructive'}>
               {negocio?.estado || 'pendiente'}
             </Badge>
           </div>
           {negocio?.fecha_vencimiento && (
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
               <span>Fecha de vencimiento:</span>
-              <span className="font-medium">
+              <span className="font-medium text-sm sm:text-base">
                 {format(new Date(negocio.fecha_vencimiento), 'dd MMMM yyyy', { locale: es })}
               </span>
             </div>
           )}
           {negocio?.plan_id && (
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
               <span>Plan actual:</span>
-              <span className="font-medium">
+              <span className="font-medium text-sm sm:text-base">
                 {planes?.find(p => p.id === negocio.plan_id)?.nombre || 'Desconocido'}
               </span>
             </div>
@@ -191,7 +191,7 @@ export function LicenseManagement() {
                       )}
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       {features.map((f) => (
                         <div key={f.label} className="text-center p-3 bg-background rounded-lg border">
                           <div className="text-lg mb-1">{f.icon}</div>
@@ -207,7 +207,7 @@ export function LicenseManagement() {
 
                 <div className="space-y-2">
                   <Label>Subir Comprobante de Pago</Label>
-                  <div {...getRootProps()} className="border-2 border-dashed rounded-md p-6 text-center cursor-pointer hover:border-primary transition-colors">
+                  <div {...getRootProps()} className="border-2 border-dashed rounded-md p-4 md:p-6 text-center cursor-pointer hover:border-primary transition-colors">
                     <input {...getInputProps()} />
                     <Upload className="mx-auto h-8 w-8 text-muted-foreground mb-2" />
                     <p className="text-sm text-muted-foreground">
@@ -235,7 +235,7 @@ export function LicenseManagement() {
         <CardContent>
           <div className="space-y-4">
             {pagos?.map((pago) => (
-              <div key={pago.id} className="flex items-center justify-between border-b pb-4">
+              <div key={pago.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-4">
                 <div>
                   <p className="font-medium">${pago.monto.toFixed(2)}</p>
                   <p className="text-sm text-muted-foreground">

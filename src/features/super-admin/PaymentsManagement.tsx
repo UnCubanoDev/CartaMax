@@ -48,7 +48,7 @@ export function PaymentsManagement() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Gestión de Pagos</h1>
+      <h1 className="text-2xl md:text-3xl font-bold">Gestión de Pagos</h1>
 
       <Card>
         <CardHeader><CardTitle>Todos los Pagos</CardTitle></CardHeader>
@@ -56,6 +56,7 @@ export function PaymentsManagement() {
           {isLoading ? (
             <div className="space-y-2">{[1,2,3].map(i => <Skeleton key={i} className="h-12 w-full" />)}</div>
           ) : (
+            <div className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -109,6 +110,7 @@ export function PaymentsManagement() {
                 ))}
               </TableBody>
             </Table>
+            </div>
           )}
         </CardContent>
       </Card>

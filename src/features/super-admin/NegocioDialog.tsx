@@ -103,7 +103,7 @@ export function NegocioDialog({ open, onOpenChange, negocio, planes }: {
       <DialogContent className="max-w-2xl">
         <DialogHeader><DialogTitle>{isEditing ? 'Editar' : 'Nuevo'} Negocio</DialogTitle></DialogHeader>
         <form onSubmit={handleSubmit((data) => mutation.mutate(data))} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Nombre</Label>
               <Input {...register('nombre')} />
@@ -143,7 +143,7 @@ export function NegocioDialog({ open, onOpenChange, negocio, planes }: {
             </div>
           )}
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Teléfono</Label>
               <Input {...register('telefono')} />

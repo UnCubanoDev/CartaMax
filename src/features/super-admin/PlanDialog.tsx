@@ -74,7 +74,7 @@ export function PlanDialog({ open, onOpenChange, plan }: any) {
           <div className="space-y-2"><Label>Nombre</Label><Input {...register('nombre')} /></div>
           <div className="space-y-2"><Label>Descripción</Label><Textarea {...register('descripcion')} /></div>
           <div className="space-y-2"><Label>Precio Mensual</Label><Input type="number" step="0.01" {...register('precio_mensual', { valueAsNumber: true })} /></div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="space-y-2"><Label>Max Productos</Label><Input type="number" {...register('max_productos', { valueAsNumber: true })} placeholder="Ilimitado" /></div>
             <div className="space-y-2"><Label>Max Categorías</Label><Input type="number" {...register('max_categorias', { valueAsNumber: true })} placeholder="Ilimitado" /></div>
             <div className="space-y-2"><Label>Max Mesas</Label><Input type="number" {...register('max_mesas', { valueAsNumber: true })} placeholder="Ilimitado" /></div>

@@ -165,20 +165,20 @@ export function PublicMenu() {
   return (
     <div className="min-h-screen bg-white text-gray-700">
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
-          <div>
-            <h1 className="text-lg font-semibold text-gray-800">{negocio?.nombre}</h1>
+        <div className="max-w-4xl mx-auto px-3 md:px-4 h-12 md:h-14 flex items-center justify-between">
+          <div className="min-w-0">
+            <h1 className="text-sm md:text-lg font-semibold text-gray-800 truncate">{negocio?.nombre}</h1>
             {mesaId && (
-              <p className="text-xs text-gray-500">Mesa {mesaId}</p>
+              <p className="text-[10px] md:text-xs text-gray-500">Mesa {mesaId}</p>
             )}
           </div>
           {!readonly && (
             <button
               type="button"
               onClick={() => setCartOpen(!cartOpen)}
-              className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="relative p-1.5 md:p-2 text-gray-600 hover:text-gray-900 transition-colors flex-shrink-0"
             >
-              <ShoppingCart className="h-5 w-5" />
+              <ShoppingCart className="h-4 w-4 md:h-5 md:w-5" />
               {totalItems > 0 && (
                 <span className="absolute -top-0.5 -right-0.5 bg-gray-800 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
                   {totalItems}
@@ -189,37 +189,37 @@ export function PublicMenu() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className="max-w-4xl mx-auto px-3 md:px-4 py-4 md:py-8">
         {categorias?.map((categoria) => (
-          <section key={categoria.id} className="mb-10">
-            <h2 className="text-lg font-bold text-gray-800 mb-1">{categoria.nombre}</h2>
-            <div className="w-12 h-0.5 bg-gray-300 mb-5" />
+          <section key={categoria.id} className="mb-6 md:mb-10">
+            <h2 className="text-base md:text-lg font-bold text-gray-800 mb-1">{categoria.nombre}</h2>
+            <div className="w-8 md:w-12 h-0.5 bg-gray-300 mb-3 md:mb-5" />
 
             <div className="space-y-0">
               {categoria.productos.map(producto => (
-                <div key={producto.id} className="py-3 border-b border-gray-100 last:border-b-0">
-                  <div className="flex items-start gap-3">
+                <div key={producto.id} className="py-2 md:py-3 border-b border-gray-100 last:border-b-0">
+                  <div className="flex items-start gap-2 md:gap-3">
                     {producto.imagen_url && (
                       <img
                         src={producto.imagen_url}
                         alt={producto.nombre}
-                        className="w-10 h-10 object-cover rounded flex-shrink-0 mt-0.5"
+                        className="w-8 h-8 md:w-10 md:h-10 object-cover rounded flex-shrink-0 mt-0.5"
                       />
                     )}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-baseline justify-between gap-2">
-                        <span className="font-medium text-gray-800 text-sm truncate">{producto.nombre}</span>
-                        <span className="text-gray-500 flex-shrink-0 text-xs leading-relaxed tracking-[0.2em] overflow-hidden text-ellipsis">········································</span>
-                        <span className="font-medium text-gray-800 text-sm flex-shrink-0 ml-auto">${producto.precio.toFixed(2)}</span>
+                      <div className="flex items-baseline justify-between gap-1 md:gap-2">
+                        <span className="font-medium text-gray-800 text-xs md:text-sm truncate">{producto.nombre}</span>
+                        <span className="text-gray-300 flex-shrink-0 text-[8px] md:text-xs leading-relaxed tracking-[0.1em] md:tracking-[0.2em] overflow-hidden hidden md:inline">····································</span>
+                        <span className="font-medium text-gray-800 text-xs md:text-sm flex-shrink-0 ml-auto">${producto.precio.toFixed(2)}</span>
                       </div>
                       {producto.descripcion && (
-                        <p className="text-xs text-gray-500 mt-0.5">{producto.descripcion}</p>
+                        <p className="text-[10px] md:text-xs text-gray-500 mt-0.5 leading-relaxed">{producto.descripcion}</p>
                       )}
                       {!readonly && (
                         <button
                           type="button"
                           onClick={() => addToCart(producto)}
-                          className="mt-1 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                          className="mt-1 text-[10px] md:text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors"
                         >
                           + Agregar
                         </button>
