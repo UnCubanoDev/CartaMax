@@ -41,9 +41,9 @@ export function truncateText(text: string, maxLength: number): string {
 }
 
 export function generateQRValue(baseUrl: string, slug: string, mesa?: string | number): string {
-  const url = new URL(`${baseUrl}${import.meta.env.BASE_URL}menu/${slug}`)
+  let url = `${baseUrl}${import.meta.env.BASE_URL}#/menu/${slug}`
   if (mesa) {
-    url.searchParams.set('mesa', mesa.toString())
+    url += `?mesa=${mesa}`
   }
-  return url.toString()
+  return url
 }
