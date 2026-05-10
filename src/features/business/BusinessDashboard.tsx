@@ -16,7 +16,7 @@ export function BusinessDashboard() {
 
   const downloadQR = async () => {
     const canvas = document.createElement('canvas')
-    await QRCode.toCanvas(canvas, `${window.location.origin}/menu/${negocio?.slug}`, {
+    await QRCode.toCanvas(canvas, `${window.location.origin}${import.meta.env.BASE_URL}menu/${negocio?.slug}`, {
       width: 1024,
       margin: 2,
     })
@@ -119,7 +119,7 @@ export function BusinessDashboard() {
           >
             <QRCodeCanvas
               id="qr-negocio"
-              value={`${window.location.origin}/menu/${negocio?.slug}`}
+              value={`${window.location.origin}${import.meta.env.BASE_URL}menu/${negocio?.slug}`}
               size={160}
             />
           </div>

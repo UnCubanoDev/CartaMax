@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuth } from '@/features/auth/AuthContext'
 import { mesasService } from '@/services/mesasService'
@@ -12,7 +13,6 @@ import { toast } from 'sonner'
 import { QRCodeCanvas } from 'qrcode.react'
 import QRCode from 'qrcode'
 import type { Database } from '@/types/database'
-import { useState } from 'react'
 
 type Mesa = Database['public']['Tables']['mesas']['Row']
 
@@ -24,7 +24,7 @@ export function TableManagement() {
 
   const downloadQR = async (mesa: Mesa) => {
     const canvas = document.createElement('canvas')
-    await QRCode.toCanvas(canvas, `${window.location.origin}/menu/${negocio?.slug}?mesa=${mesa.numero}`, {
+    await QRCode.toCanvas(canvas, `${window.location.origin}${import.meta.env.BASE_URL}menu/${negocio?.slug}?mesa=${mesa.numero}`, {
       width: 1024,
       margin: 2,
     })
@@ -93,14 +93,14 @@ export function TableManagement() {
                           <div className="bg-white p-1 inline-block rounded">
                             <QRCodeCanvas
                               id={`qr-${mesa.id}`}
-                              value={`${baseUrl}/menu/${negocio?.slug}?mesa=${mesa.numero}`}
+                              value={`${baseUrl}${import.meta.env.BASE_URL}menu/${negocio?.slug}?mesa=${mesa.numero}`}
                               size={48}
                             />
                           </div>
                           <div className="flex flex-col gap-1">
                             <button
                               type="button"
-                              onClick={() => window.open(`${baseUrl}/menu/${negocio?.slug}?mesa=${mesa.numero}`, '_blank')}
+                              onClick={() => window.open(`${baseUrl}${import.meta.env.BASE_URL}menu/${negocio?.slug}?mesa=${mesa.numero}`, '_blank')}
                               className="p-1 hover:bg-accent rounded transition-colors"
                               title="Abrir enlace"
                             >
